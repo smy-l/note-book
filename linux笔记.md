@@ -10,7 +10,7 @@ linux中
 - 个人密码存储在/etc/shadow中
 - 组名存储在/etc/group中
 
-![](2020-03-15-1.png)
+![](./picture/2020-03-15-1.png)
 
 
 ## 1、了解 " -rwxr-xr-- "含义<br>
@@ -79,7 +79,7 @@ chmod (change mode) | 改变文件权限，SUID，SGID，SBIT等特性
 
 被改变的组名一定要在/etc/group，否则显示错误
 
-![](2020-03-15-2.png)
+![](./picture/2020-03-15-2.png)
 
 users本身存在于/etc/group中，而testing不存在，使用chgrp更改install.log文件所属群组。结果如上图所示，users更改成功，而testing更改失败，提示找不到群组名
 
@@ -87,7 +87,7 @@ users本身存在于/etc/group中，而testing不存在，使用chgrp更改insta
 
 被改变的用户名一定要在/etc/passwd中，同时，此命令还可以更改群组名称。
 
-![](2020-03-15-3.png)
+![](./picture/2020-03-15-3.png)
 
 结果如图所示
 
@@ -104,11 +104,11 @@ chgrp和chown经常在将文件复制给他人时使用
 
 ### 3.1 chmod使用数字变更权限
 
-![](2020-03-15-4.png)
+![](./picture/2020-03-15-4.png)
 
 1、例如，将.bashrc这个文件所有权限都设置为启用，操作如图所示
 
-![](2020-03-15-5.png)
+![](./picture/2020-03-15-5.png)
 
 2、将.bashrc这个文件改为-rw-r--r--
 指令为``` chmod 644 .bashrc ```
@@ -124,15 +124,15 @@ chgrp和chown经常在将文件复制给他人时使用
 
 1、例如将.bashrc这个文件设置为-rwxr-xr-x
 
-![](2020-03-15-6.png)
+![](./picture/2020-03-15-6.png)
 
 2、例如并不知道.bashrc文件权限，要使每个人都具有写入这一权限
 
-![](2020-03-15-7.png)
+![](./picture/2020-03-15-7.png)
 
 3、若去掉所有人可执行权限
 
-![](2020-03-15-8.png)
+![](./picture/2020-03-15-8.png)
 
 ## 权限对文件重要性
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 mkdir -p prepare/practice  #依次创建prepare/practice文件夹
 cd prepare/practice/       
 mkdir new
