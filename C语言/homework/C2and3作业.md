@@ -88,9 +88,28 @@
     ![](./picture/GetcharNumber.png)
 
 ## 下午作业
+1. 素数,(当数字不能整除2至其平方根之间的整数,即为素数)
+    ```
+    #include <stdio.h>
+    #include <math.h>
 
-
-
+    int main(void) {
+        int m;  
+        int i;  
+        int k;  
+        printf("输入一个整数：");
+        scanf("%d",&m);
+        k=(int)sqrt( (double)m );
+        for(i=2;i<=k;i++)
+        if(m%i==0)
+            break;
+        if(i>k)
+            printf("%d是素数。\n",m);
+        else
+            printf("%d不是素数。\n",m);
+        return 0;
+    }
+    ```
 
 
 
