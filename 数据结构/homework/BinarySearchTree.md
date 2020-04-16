@@ -5,106 +5,83 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+#define SIZE 10
 //制作选择二叉树
 
-typedef struct treenode{
+typedef struct node{
     int data;
-    struct treenode *Left, *Right;
-}BSTNode;
+    struct node *Left, *Right;
+}TreeNode;
 
-BSTNode* createBST(int elem){
-    BSTNode* root = (BSTNode*)malloc(sizeof(BSTNode));
-    root->data = elem;
-    root->Left = root->Right = NULL;
+TreeNode* create(void);
+TreeNode* search(TreeNode* root, int target);
+TreeNode* insert(TreeNode* root, int data);
+void print(TreeNode* root);
+
+
+TreeNode* create(void){
+    return NULL;
+}
+
+
+TreeNode* search(TreeNode* root, int target){
+    if(root == NULL){
+        return NULL;
+    }
+    
+    if(root->data == target){
+        return root;
+    }
+    
+    if(root->data < target){
+        return search(root->Right, target);
+    }else{
+        return search(root->Left, target);
+    }
+}
+
+
+TreeNode* insert(TreeNode* root, int data){
+    TreeNode* new_node = (TreeNode*)malloc(sizeof(TreeNode));
+    new_node->Left = NULL;
+    new_node->Right = NULL;
+    new_node->data = data;
+    
+    if(root == NULL){
+        return new_node;
+    }
+    
+    if(data >= root->data){
+        root->Right = insert(root->Right, data);
+    }else{
+        root->Left = insert(root->Left, data);
+    }
+    
     return root;
 }
 
-
-
-void search_elem(BSTNode* t, int elem){
-    BSTNode* temp = t;
-    if(temp->data == elem){
-        printf("%d在该二叉树中\n",elem);
+void print(TreeNode* root){
+    if(root == NULL){
         return;
-    }else if(temp->data > elem && temp->Right != NULL){
-        temp = temp->Right;
-        search_elem(temp, elem);
-    }else if(temp->data < elem && temp->Left != NULL){
-        temp = temp->Left;
-        search_elem(temp, elem);
-    }else{
-        printf("%d不在该二叉树中\n",elem);
     }
+    print(root->Left);
+    printf("%4d",root->data);
+    print(root->Right);
 }
-
-
-void insert_BST(BSTNode *p, int elem){
-    BSTNode *NewElem = (BSTNode*)malloc(sizeof(BSTNode));
-    NewElem->data = elem;
-    NewElem->Left = NULL;
-    NewElem->Right = NULL;
-    
-    BSTNode* temp = p;
-    
-    if(temp->data >= elem) {
-        while (temp->Right != NULL){
-            temp = temp->Right;
-        }
-        temp->Right = NewElem;
-    }
-    
-    if(temp->data < elem) {
-        while (temp->Left != NULL){
-            temp = temp->Left;
-        }
-        temp->Left = NewElem;
-    }
-}
-
-void print_tree(BSTNode* tree){
-    /*
-    if(tree->Left){
-        print_tree(tree->Left);
-    }
-    
-    printf("%d ", tree->data);
-    
-    */
-    if(tree->Right){
-        print_tree(tree->Right);
-    }
-    
-    printf("%d ", tree->data);
-    
-    if(tree->Left){
-        print_tree(tree->Left);
-    }
-}
-
-
 
 int main(){
-    BSTNode* tree = createBST(10);
-    insert_BST(tree, 1000);
-    search_elem(tree, 10);
-    search_elem(tree, 1000);
-    insert_BST(tree, 5);
-    insert_BST(tree, 200);
-    
-    
-    print_tree(tree);
-    
-    
-    /*
-    int a[10];
+    TreeNode* pt = create();
+
     srand((int)time(NULL));
-    for(int i = 0; i < 10; i++){
-        a[i] = rand() % 100;
-        printf("%4d",a[i]);
+    for (int i = 0; i < SIZE; i++) {
+        pt = insert(pt, rand() % 100);
+        
     }
+    
+    print(pt);
     printf("\n");
-     */
+    
+    return 0;
 }
 
 
